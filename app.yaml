@@ -1,10 +1,12 @@
-runtime: python27
-api_version: 1
-threadsafe: yes
-handlers:
-- url: .*
-  script: main.app
-libraries:
-- name: webapp2
-  version: "2.5.2"
+runtime: python310  # Use Python 3.10
+env: standard       # Use the standard environment
 
+entrypoint: gunicorn -b :$PORT main:app  # Use gunicorn as the WSGI server
+
+handlers:
+- url: /.*
+  script: auto      # Let App Engine handle routing automatically
+
+# Optional: Define environment variables
+env_variables:
+  FLASK_ENV: production
