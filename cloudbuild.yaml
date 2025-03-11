@@ -10,12 +10,12 @@ steps:
     id: 'Deploy to App Engine'
     args: ['app', 'deploy']
 
-# Timeout for the build process (optional)
-timeout: '1600s'
-
-# Disable logging
-options:
-  logging: NONE
+  # Specify a logs bucket
+  options:
+    logging: CLOUD_LOGGING_ONLY  # Use Cloud Logging for build logs
+    
+  # Timeout for the build process (optional)
+  timeout: '1600s'
 
 # Artifacts to store after the build (optional)
 #artifacts:
