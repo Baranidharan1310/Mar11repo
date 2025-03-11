@@ -1,5 +1,21 @@
 steps:
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "deploy"]
-timeout: "1600s"
+  # Install dependencies
+  - name: 'python:3.10'
+    id: 'Install dependencies'
+    entrypoint: pip
+    args: ['install', '-t', '.', '-r', 'requirements.txt']
 
+  # Deploy to App Engine
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Deploy to App Engine'
+    args: ['app', 'deploy']
+
+# Timeout for the build process (optional)
+timeout: '1600s'
+
+# Artifacts to store after the build (optional)
+#artifacts:
+  #objects:
+    #location: 'gs://your-bucket-name/'
+    #paths: ['app.yaml', 'main.py', 'requirements.txt']
+    
