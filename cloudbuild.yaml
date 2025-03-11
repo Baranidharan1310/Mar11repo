@@ -13,6 +13,10 @@ steps:
 # Timeout for the build process (optional)
 timeout: '1600s'
 
+# Disable logging
+options:
+  logging: NONE
+
 # Artifacts to store after the build (optional)
 #artifacts:
   #objects:
